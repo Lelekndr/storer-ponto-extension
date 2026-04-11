@@ -16,7 +16,8 @@
     "type": "module"
   },
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "src/popup/index.html"
+    
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
