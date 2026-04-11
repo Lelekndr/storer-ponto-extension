@@ -5,24 +5,25 @@ import { resolve } from 'path'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Desabilita o split automático de chunks — extensão Chrome precisa
-    // de arquivos previsíveis, não de hashes aleatórios
     rollupOptions: {
       input: {
+        // Popup e Options são páginas HTML com React — tratadas normalmente
         popup: resolve(__dirname, 'src/popup/index.html'),
         options: resolve(__dirname, 'src/options/index.html'),
+        // O background é um script puro — não tem HTML associado
         background: resolve(__dirname, 'src/background/index.ts'),
       },
       output: {
-        // Garante que o service worker não seja dividido em chunks
+        // Nomes de arquivo previsíveis são obrigatórios em extensões Chrome —
+        // o manifest.json referencia caminhos fixos, não hashes gerados automaticamente
         entryFileNames: '[name]/index.js',
         chunkFileNames: '[name]/[name].js',
         assetFileNames: '[name]/[name].[ext]',
       },
     },
-    // Sem source maps em produção (requisito de segurança do SPEC)
+    // esbuild já vem no Vite e não usa eval — compatível com o CSP do Manifest V3
+    minify: 'esbuild',
+    // Source maps desabilitados em produção conforme checklist de segurança do SPEC
     sourcemap: false,
-    // Desabilita minificação com eval — proibido pelo CSP do Manifest V3
-    minify: 'terser',
   },
 })
