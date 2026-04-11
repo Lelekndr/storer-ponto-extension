@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Dependências
+node_modules/
+mock-api/node_modules/
+
+# Build
+dist/
+
+# Ambiente
+.env
+.env.local
+.env.development
+.env.production
+
+# Editor
+.vscode/
+*.log

@@ -10,6 +10,13 @@ interface RequestOptions {
   timeoutMs?: number;
 }
 
+class NonRetryableError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'NonRetryableError';
+  }
+}
+
 export class HttpClient {
   private baseUrl: string;
 
@@ -46,18 +53,20 @@ export class HttpClient {
         if (!response.ok) {
           if (response.status === 401) {
             await StorageService.clearTokens();
-            throw new Error('Sessão expirada. Faça login novamente.');
+            throw new NonRetryableError('Sessão expirada. Faça login novamente.');
           }
           throw new Error(`Erro da API: ${response.status}`);
         }
 
-        return response.json() as Promise<T>;
+        const data: unknown = await response.json();
+        return data as T;
 
       } catch (error) {
+        if (error instanceof NonRetryableError) throw error;
+
         const isLastAttempt = attempt === MAX_RETRIES - 1;
         if (isLastAttempt) throw error;
 
-        // Backoff exponencial: 1s, 2s, 4s
         const waitMs = Math.pow(2, attempt) * 1000;
         await new Promise(resolve => setTimeout(resolve, waitMs));
       }
