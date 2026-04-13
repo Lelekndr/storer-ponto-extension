@@ -1,18 +1,19 @@
-// Os 4 tipos possíveis de batida — a API determina qual é com base na sequência do dia
+
 export type TipoBatida = 'ENTRADA' | 'INTERVALO' | 'RETORNO' | 'SAIDA';
 
-export interface Batida {
+
+export interface Batida { //Registro completo
   id: string;
-  timestamp: string; // ISO 8601 UTC, ex: "2026-04-10T11:00:00Z"
+  timestamp: string; 
   tipo: TipoBatida;
   geolocation?: {
     latitude: number;
     longitude: number;
   };
-  sincronizado: boolean; // false quando está na fila offline
+  sincronizado: boolean; 
 }
 
-export interface RegistrarBatidaRequest {
+export interface RegistrarBatidaRequest { //Extensão manda para a API
   timestamp: string;
   geolocation?: {
     latitude: number;
@@ -20,15 +21,15 @@ export interface RegistrarBatidaRequest {
   };
 }
 
-export interface RegistrarBatidaResponse {
+export interface RegistrarBatidaResponse { //O que a API devolve
   id: string;
   timestamp: string;
   tipo: TipoBatida;
 }
 
 export interface SaldoMes {
-  mesAno: string;          // "2026-04"
-  saldoMinutos: number;    // positivo = banco de horas, negativo = devendo
+  mesAno: string;          
+  saldoMinutos: number;    
   horasTrabalhadas: number;
   horasPrevistas: number;
 }

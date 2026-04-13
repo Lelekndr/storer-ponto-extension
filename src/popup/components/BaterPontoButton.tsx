@@ -6,11 +6,10 @@ interface BaterPontoButtonProps {
   onRegistrar: () => Promise<string | null>;
 }
 
-// O estado do botão como um tipo union garante que só existam
-// combinações válidas — impossível ter loading e erro ao mesmo tempo.
+
 type ButtonState = 'idle' | 'loading' | 'success' | 'error';
 
-// Mapeia o tipo da batida retornado pela API para um label amigável no toast
+// Mapeia o tipo da batida retornado pela API 
 function getTipoLabel(tipo: string): string {
   const labels: Record<string, string> = {
     ENTRADA: 'Entrada', INTERVALO: 'Intervalo',

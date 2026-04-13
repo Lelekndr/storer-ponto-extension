@@ -17,8 +17,7 @@ function getTipoInfo(tipo: TipoBatida): { emoji: string; label: string } {
   return map[tipo];
 }
 
-// Formata um timestamp ISO 8601 UTC para o horário local do usuário no formato HH:MM.
-// Ex: "2026-04-10T11:00:00Z" → "08:00" (se o usuário estiver em GMT-3)
+
 function formatarHorario(timestamp: string): string {
   return new Date(timestamp).toLocaleTimeString('pt-BR', {
     hour: '2-digit',
@@ -43,7 +42,6 @@ export function BatidaItem({ batida }: BatidaItemProps) {
       <span style={{ fontSize: '16px' }}>{emoji}</span>
       <span style={{ fontWeight: 600, fontSize: '15px', color: '#333' }}>{horario}</span>
       <span style={{ fontSize: '13px', color: '#666', marginLeft: 'auto' }}>{label}</span>
-      {/* Indica visualmente quando a batida ainda não foi sincronizada com a API */}
       {!batida.sincronizado && (
         <span style={{ fontSize: '11px', color: '#f59e0b' }} title="Aguardando sincronização">
           ⏳ offline

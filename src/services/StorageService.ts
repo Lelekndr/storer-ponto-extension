@@ -23,7 +23,7 @@ export class StorageService {
 
   static async getTokens(): Promise<TokenSet | null> {
     const result = await chrome.storage.session.get(KEYS.TOKEN_SET);
-    // Cast explícito necessário porque o Chrome storage retorna um objeto genérico
+
     return (result[KEYS.TOKEN_SET] as TokenSet) ?? null;
   }
 
@@ -40,7 +40,7 @@ export class StorageService {
 
   static async getOfflineQueue(): Promise<Batida[]> {
     const result = await chrome.storage.local.get(KEYS.OFFLINE_QUEUE);
-    // O ?? [] garante que nunca retorna undefined, e o cast diz ao TypeScript qual é o tipo
+
     return (result[KEYS.OFFLINE_QUEUE] as Batida[]) ?? [];
   }
 
