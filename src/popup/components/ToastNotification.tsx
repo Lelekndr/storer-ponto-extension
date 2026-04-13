@@ -7,9 +7,6 @@ interface ToastProps {
 }
 
 export function ToastNotification({ mensagem, tipo, onClose }: ToastProps) {
-  // Fecha automaticamente após 4 segundos — requisito do AC-05 do PBI-04.
-  // O cleanup do useEffect cancela o timer se o componente for desmontado antes
-  // do tempo acabar, evitando um memory leak clássico em React.
   useEffect(() => {
     const timer = setTimeout(onClose, 4000);
     return () => clearTimeout(timer);

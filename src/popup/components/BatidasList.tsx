@@ -1,9 +1,6 @@
 import type { Batida } from '../../types/ponto.types';
 import { BatidaItem } from './BatidaItem';
 
-// Agora BatidasList recebe tudo via props — quem gerencia o estado é o MainScreen,
-// que instancia o useBatidas uma única vez e distribui para os filhos que precisam.
-// Isso evita múltiplas chamadas à API vindas de hooks duplicados.
 interface BatidasListProps {
   batidas: Batida[];
   isLoading: boolean;

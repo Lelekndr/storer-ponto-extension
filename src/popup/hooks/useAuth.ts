@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { AuthService } from '../../services/AuthService';
 
-// Esse hook encapsula todo o estado de autenticação da aplicação.
-// Qualquer componente que precisar saber se o usuário está logado usa esse hook.
 export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true); // começa true para evitar flash de tela errada
+  const [isLoading, setIsLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     // Verifica o estado de autenticação assim que o popup abre

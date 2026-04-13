@@ -16,7 +16,6 @@ export function SaldoWidget() {
     return <div style={{ height: '40px', backgroundColor: '#e5e7eb', borderRadius: '8px' }} />;
   }
 
-  // Conforme AC-06 do PBI-07: erro no saldo não trava o popup
   if (!saldo) {
     return (
       <p style={{ fontSize: '12px', color: '#9ca3af', textAlign: 'center' }}>
@@ -44,7 +43,7 @@ export function SaldoWidget() {
       <span style={{ fontSize: '12px', color: '#6b7280', textTransform: 'capitalize' }}>
         {mesFormatado}
       </span>
-      {/* Cor dinâmica conforme AC-02 e AC-03 do PBI-07 */}
+     
       <span style={{ fontSize: '18px', fontWeight: 700, color: cor }}>
         {formatarSaldo(saldo.saldoMinutos)}
       </span>

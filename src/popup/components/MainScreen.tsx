@@ -33,8 +33,6 @@ export function MainScreen({ onLogout }: MainScreenProps) {
         onLogout={onLogout}
       />
       <SaldoWidget />
-      {/* BaterPontoButton recebe registrarBatida do hook —
-          quando o ponto é registrado, o hook já atualiza a lista automaticamente */}
       <BaterPontoButton onRegistrar={registrarBatida} />
       <BatidasList
         batidas={batidas}

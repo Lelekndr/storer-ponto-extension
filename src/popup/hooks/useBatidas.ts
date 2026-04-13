@@ -8,8 +8,7 @@ export function useBatidas() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // useCallback evita que a função seja recriada a cada render,
-  // o que causaria um loop infinito no useEffect abaixo
+  // useCallback evita que a função seja recriada a cada render
   const fetchBatidas = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -35,9 +34,8 @@ export function useBatidas() {
       const config = await StorageService.getConfig();
       const service = new PontoService(config.apiBaseUrl);
       const resposta = await service.registrarBatida();
-      // Atualiza a lista sem precisar fazer um novo fetch
       await fetchBatidas();
-      return resposta.tipo; // retorna o tipo para o componente exibir no toast
+      return resposta.tipo;
     } catch {
       throw new Error('Falha ao registrar ponto. Verifique sua conexão.');
     }

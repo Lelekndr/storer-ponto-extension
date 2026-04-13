@@ -15,7 +15,6 @@ export function useSaldo() {
     }).then((resultado) => {
       setSaldo(resultado);
     }).catch(() => {
-      // Saldo indisponível não deve travar o popup — conforme AC-06 do PBI-07
       setSaldo(null);
     }).finally(() => {
       setIsLoading(false);
