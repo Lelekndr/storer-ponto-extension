@@ -7,6 +7,7 @@ Desenvolvida com TypeScript, React 18, Vite e Manifest V3.
 ---
 
 ## Estrutura do Repositório
+```
 storer-ponto-extension/
 ├── mock-api/             # Servidor mock da ponto-web-api (Node.js + Express)
 ├── public/               # manifest.json e ícones
@@ -17,8 +18,7 @@ storer-ponto-extension/
 │   ├── services/         # AuthService, PontoService, HttpClient, StorageService
 │   └── types/            # Interfaces TypeScript
 └── tests/                # Testes unitários (Vitest)
-
-
+```
 ---
 
 ## Como Rodar
